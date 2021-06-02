@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Row, Col, Button, Form, Spinner, Alert } from 'react-bootstrap';
 import { useRouter } from 'next/router';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import addressState from '../../../store/atoms/addressAtom';
 import getAvailableCities from '../../../services/getAvailableCities';
 import cartState from '../../../store/atoms/cartAtom';
@@ -11,6 +11,7 @@ export default function FormAddress(props) {
   const [address, setAddress] = useRecoilState(addressState);
   const [cart, setCart] = useRecoilState(cartState);
   const [cityChanged, setCityChanged] = useState(false);
+  const resetCart = useResetRecoilState(cartState);
   const router = useRouter();
 
   if (isError) {
@@ -34,7 +35,7 @@ export default function FormAddress(props) {
     e.preventDefault();
     props.onHide();
     if (cityChanged) {
-      setCart({ restaurant: {}, products: [] })
+      resetCart();
       router.push('/restaurants');
     }
   }

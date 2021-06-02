@@ -10,14 +10,14 @@ export default function getRestaurants() {
 
   let params = '';
 
-  if (category) {
-    params = `${params == '' ? '?' : '&'}category=${category}`
+  if (address.city != '') {
+    params += `${params == '' ? '?' : '&'}city=${address.city}`
   }
   if (q) {
-    params = `${params == '' ? '?' : '&'}q=${q}`
+    params += `${params == '' ? '?' : '&'}q=${q}`
   }
-  if (address.city != '') {
-    params = `${params == '' ? '?' : '&'}city=${address.city}`
+  if (category) {
+    params += `${params == '' ? '?' : '&'}category=${category}`
   }
 
   const fetcher = (...args) => fetch(...args).then(res => res.json());
