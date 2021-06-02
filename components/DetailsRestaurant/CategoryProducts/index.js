@@ -3,14 +3,13 @@ import { Row, Col, Card } from 'react-bootstrap';
 import Image from 'next/image'
 import { toCurrency } from '../../../services/toCurrency';
 import { truncateString } from '../../../services/truncateString';
-// import AddProductModal from '../../AddProductModal';
+import AddProductModal from '../../AddProductModal';
 
 export default function CategoryProducts(props) {
   const [productSelect, setProductSelected] = useState(null);
 
   return (
     <>
-
       <h5 className='fw-bold'>{props.title}</h5>
       <Row>
         {props.products.map((product, i) =>
@@ -39,12 +38,12 @@ export default function CategoryProducts(props) {
           </Col>
         )}
       </Row>
-      {/* <AddProductModal
+      <AddProductModal
         show={productSelect != null}
         onHide={() => setProductSelected(null)}
         product={productSelect}
         restaurant={props.restaurant}
-      /> */}
+      />
     </>
   )
 }
